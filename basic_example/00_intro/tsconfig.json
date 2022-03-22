@@ -1,0 +1,7 @@
+{
+  "compilerOption": { 
+    "allowJs": true, //js 허용
+    "checkJs": true, // ts 허용 @ts-check
+    "noImplicitAny": true // 모든 타임을 넣어야한다. 
+  }
+}
