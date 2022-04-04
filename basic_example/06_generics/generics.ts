@@ -39,7 +39,7 @@ function logUnion(text: string | number){
 
 logUnion('hi')
 let a = logUnion(100)
-a.split()
+//a.split()
 
 
 //  제네릭 
@@ -51,4 +51,61 @@ function logGen <T>(text: T): T {
 let abc = logGen<string>('hi');
 abc.split('');
 let login= logGen<boolean>(true);
+
+
+//  인터페이스 제네릭 선언
+interface Dropdown {
+  value: string;
+  selected: boolean;
+}
+
+const obj: Dropdown = {value: 'abc', selected: true}
+
+interface GenDropdown <T>{
+  value: T;
+  selected: boolean;
+}
+
+const obj2: GenDropdown<number> = {value: 100, selected: true}
+
+
+// 제네릭 터입 제한 : 타입힌트를 더 준다.
+function logTextLength<T>(text: T[]): T[]{
+  console.log(text.length);
+  text.forEach(function (text){
+    console.log(text);
+  })
+  return text;
+}
+
+ logTextLength<string>(['hi'])
+
  
+ //  제네릭 터입 제한2 : 정의된 타입으로 타입 제한 
+interface LengthType {
+  length: number;
+}
+
+function logTextLength2 <T extends LengthType>(text: T): T{
+  text.length;
+  return text
+}
+
+logTextLength2('hi')
+logTextLength2({length: 10})
+
+
+//  제네릭 터입 제한3 :  keyof 
+interface ShoppingItem {
+  name: string;
+  price: number;
+  stock: number;
+}
+
+function getShoppingItemOption<T extends keyof ShoppingItem>(itemOption: T): T{
+  return itemOption;
+}
+
+// getShoppingItemOption(10);
+// getShoppingItemOption<string>('a');
+getShoppingItemOption('name')

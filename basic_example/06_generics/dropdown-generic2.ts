@@ -1,27 +1,22 @@
-interface Email {
-  value: string;
+interface DropdownItem<T> {
+  value: T;
   selected: boolean;
 }
 
-const emails: Email[]= [
+const emails:DropdownItem<string>[]= [
   { value: 'naver.com', selected: true },
   { value: 'gmail.com', selected: false },
   { value: 'hanmail.net', selected: false },
 ];
 
-interface ProductNumber {
-  value: number;
-  selected: boolean;
-}
-
-const numberOfProductss: ProductNumber[] = [
+const numberOfProductss:DropdownItem<number>[] = [
   { value: 1, selected: true },
   { value: 2, selected: false },
   { value: 3, selected: false }, 
 ];
 
 // union 타입
-function createDropdownItem(item: Email | ProductNumber) {
+function createDropdownItem<T>(item: DropdownItem<T>) {
   const option = document.createElement('option');
   option.value = item.value.toString();
   option.innerText = item.value.toString();
@@ -30,8 +25,8 @@ function createDropdownItem(item: Email | ProductNumber) {
 }
 
 // NOTE: 이메일 드롭 다운 아이템 추가
-emails.forEach(function (email:Email) {
-  const item = createDropdownItem(email);
+emails.forEach(function (email) {
+  const item = createDropdownItem<string>(email);
   const selectTag = document.querySelector('#email-dropdown');
   selectTag.appendChild(item);
 });
