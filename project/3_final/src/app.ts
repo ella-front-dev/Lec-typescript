@@ -8,6 +8,7 @@ import {}  from '파일 상대 경로'
 
 import axios from 'axios';
 import { Chart } from 'chart.js';
+// import Chart1 from 'chart1.js';
 
 // utils
 function $(selector: string) {
