@@ -1,3 +1,14 @@
+/*
+// 라이브러리 로딩
+import 변수명 from '라이브러리 이름';
+
+// 변수, 함수 임포트 문법
+import {}  from '파일 상대 경로'
+*/
+
+import axios from 'axios';
+import { Chart } from 'chart.js';
+
 // utils
 function $(selector: string) {
   return document.querySelector(selector);
@@ -8,7 +19,7 @@ function getUnixTimestamp(date: Date) {
 
 // DOM
 
-var a: Element | HTMLElement | HTMLParagraphElement; // 좀더 구체화
+// var a: Element | HTMLElement | HTMLParagraphElement; // 좀더 구체화
 const confirmedTotal = $('.confirmed-total') as HTMLSpanElement;
 const deathsTotal = $('.deaths') as HTMLParagraphElement;
 const recoveredTotal = $('.recovered') as HTMLParagraphElement;
