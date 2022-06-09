@@ -18,6 +18,8 @@
     - babel, eslint, prettier 등의  환경 설정
 
 4. 외부 라이브러리 모듈화
+
+5. `strict` 옵션 추가 및 타입 정의 
     - 
 
 
