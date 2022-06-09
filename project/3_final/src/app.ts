@@ -6,9 +6,12 @@ import 변수명 from '라이브러리 이름';
 import {}  from '파일 상대 경로'
 */
 
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Chart } from 'chart.js';
 // import Chart1 from 'chart1.js';
+
+// 타입 모듈
+import { CountrySummeryResponse, CovidSummaryResponse } from './covid/index';
 
 // utils
 function $(selector: string) {
@@ -48,7 +51,6 @@ function createSpinnerElement(id: string) {
 
 // state
 let isDeathLoading = false;
-const isRecoveredLoading = false;
 
 /**
  * @typedef {object} CovidSummary
@@ -60,7 +62,7 @@ const isRecoveredLoading = false;
  * @returns {Promise<CovidSummary>}
  */
 
-function fetchCovidSummary() {
+function fetchCovidSummary(): Promise<AxiosResponse<CovidSummaryResponse>> {
   const url = 'https://api.covid19api.com/summary';
   return axios.get(url);
 }
@@ -71,7 +73,10 @@ enum CovidStatus {
   Deaths = 'deaths',
 }
 
-function fetchCountryInfo(countryCode: any, status: CovidStatus) {
+function fetchCountryInfo(
+  countryCode: any,
+  status: CovidStatus
+): Promise<AxiosResponse<CountrySummeryResponse>> {
   // status params: confirmed, recovered, deaths
   const url = `https://api.covid19api.com/country/${countryCode}/status/${status}`;
   return axios.get(url);
@@ -219,7 +224,7 @@ function renderChart(data: any, labels: any) {
   });
 }
 
-function setChartData(data: any) {
+function setChartData(data: CountrySummeryResponse) {
   const chartData = data.slice(-14).map((value: any) => value.Cases);
   const chartLabel = data
     .slice(-14)
